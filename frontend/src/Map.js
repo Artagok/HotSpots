@@ -1,4 +1,4 @@
-const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet;
+import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 
 // Basic example from docs
 class MapExample extends React.Component {
@@ -14,7 +14,7 @@ class MapExample extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap center={position} zoom={this.state.zoom}>
+      <Map center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
@@ -24,11 +24,11 @@ class MapExample extends React.Component {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-      </LeafletMap>
+      </Map>
     );
   }
 }
 
-export default MapExample;
+export default MapExample; // ?
 
-ReactDOM.render(<MapExample />, document.getElementById("container"));
+// ReactDOM.render(<MapExample />, document.getElementById("container"));
