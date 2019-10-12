@@ -14,10 +14,32 @@ class Map extends Component {
     };
   }
 
+  // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
+  updateDimensions() {
+    const height = window.innerWidth >= 992 ? window.innerHeight : 400;
+    this.setState({ height: height });
+  }
+
+  componentWillMount() {
+    this.updateDimensions();
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
+  }
+
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap center={position} zoom={this.state.zoom}>
+      <LeafletMap
+        center={position}
+        zoom={this.state.zoom}
+        style={{ height: this.state.height }}
+      >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
