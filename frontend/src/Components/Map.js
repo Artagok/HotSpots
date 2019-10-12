@@ -36,7 +36,7 @@ class Map extends Component {
             }
             newData.city = jsonData;
             console.log(this.state.data);
-            console.log(jsonData);
+            console.log(newData);
             this.setState({
               data: newData
             })
