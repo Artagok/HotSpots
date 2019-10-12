@@ -5,6 +5,14 @@ import data from "./data.js";
 // import "./Map.css";
 import "leaflet/dist/leaflet.css";
 
+function refreshButton(props) {
+  return (
+    <button className="refreshButton" onClick={props.onClick}>
+      refresh
+    </button>
+  );
+}
+
 // Basic example from docs
 class Map extends Component {
   constructor(props) {
@@ -14,6 +22,25 @@ class Map extends Component {
       lng: 2.16,
       zoom: 16
     };
+  }
+
+  handleRefresh(){
+    const url = "http://localhost:5000/api/pushpins"
+
+    fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+          });
+
+
+    data.city = [
+      {
+        description: "epaaaaa",
+        coordinates: [2.20268, 41.384668],
+        event_count: 10
+      }
+    ]
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
@@ -37,6 +64,10 @@ class Map extends Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
+      <div>
+      <button onClick={this.handleRefresh}>
+        Click me!
+      </button>
       <LeafletMap
         center={position}
         zoom={this.state.zoom}
@@ -70,6 +101,7 @@ class Map extends Component {
           );
         })}
       </LeafletMap>
+      </div>
     );
   }
 }
