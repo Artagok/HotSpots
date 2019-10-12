@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
-import "./Map.css";
+import { CircleMarker } from "react-leaflet";
+import data from "./data.js";
+// import "./Map.css";
 import "leaflet/dist/leaflet.css";
 
 // Basic example from docs
@@ -44,6 +46,15 @@ class Map extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
         />
+
+        {data.city.map(city => {
+          return (
+            <CircleMarker
+              center={[city["coordinates"][1], city["coordinates"][0]]}
+            />
+          );
+        })}
+
         <Marker position={position}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
