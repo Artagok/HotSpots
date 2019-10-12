@@ -5,12 +5,12 @@
 let data = {
   city: [
     {
-      description: "descripcion del evento",
-      coordinates: [2.20268, 41.384666],
+      description: "jeje xd",
+      coordinates: [2.20268, 41.384668],
       event_count: 10
     },
     {
-      description: "descripcion del evento",
+      description: "😎",
       coordinates: [2.18268, 41.394666],
       event_count: 15
     },
@@ -21,7 +21,7 @@ let data = {
     },
     {
       description: "descripcion del evento",
-      coordinates: [2.16268, 41.384656],
+      coordinates: [2.16268, 41.384677],
       event_count: 15
     },
     {
@@ -49,11 +49,11 @@ let data = {
       coordinates: [2.11268, 41.384666],
       event_count: 20
     }
-  ],
-  minLat: 41.384666,
-  maxLat: 41.418659,
-  minLong: 2.10268,
-  maxLong: 2.232971
+  ]
+  // minLat: 4.384666,
+  // maxLat: 44.418659,
+  // minLong: 1.10268,
+  // maxLong: 22.232971
 };
 
 export default data;

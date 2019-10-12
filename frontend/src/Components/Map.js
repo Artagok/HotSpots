@@ -47,18 +47,21 @@ class Map extends Component {
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
         />
 
-        {data.city.map(city => {
+        {data.city.map((city, k) => {
           return (
-            <CircleMarker>
+            <CircleMarker
+              key={k}
               center={[city["coordinates"][1], city["coordinates"][0]]}
               radius={20 * Math.log(city["event_count"])}
               fillOpacity={0.5}
               stroke={false}
+            >
               <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
                 <span>
-                  {city["description"] +
-                    ": " +
-                    "event_count" +
+                  {"Evento:" +
+                    city["description"] +
+                    " -- " +
+                    "Number of events:" +
                     " " +
                     city["event_count"]}
                 </span>
