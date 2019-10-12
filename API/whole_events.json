@@ -1,0 +1,71 @@
+[
+   {
+      "coords":[
+         41.404871, 2.149100
+      ],
+      "_id":"5da0fdcfa4cc5b3024a28f2c",
+      "type":"kidnapping",
+      "description":"Eight year old goes missing",
+      "date":"2019-10-11T22:10:23.533Z",
+      "event_count": "1",
+      "__v":0
+   },
+   {
+      "coords":[
+         41.379887, 2.175539
+      ],
+      "_id":"5da0fd6ba4cc5b3024a28f2b",
+      "type":"kidnapping",
+      "description":"The son of the UN gets kidnapped on a trip to 'Ciudad Real'",
+      "date":"2019-10-11T22:08:43.682Z",
+      "event_count": "2",
+
+      "__v":0
+   },
+   {
+      "coords":[
+         41.418722, 2.134239
+      ],
+      "_id":"5da0fdcfa4cc5b3024a28f2c",
+      "type":"kidnapping",
+      "description":"Little Carly goes missing after a huge argument with one of her sugar daddies, Mr. Juan Carlos",
+      "date":"2019-10-11T22:10:23.533Z",
+      "event_count": "1",
+      "__v":0
+   },
+   {
+      "coords":[
+         41.379073, 2.162956
+      ],
+      "_id":"5da0fdcfa4cc5b3024a28f2c",
+      "type":"voluntary-manslaughter",
+      "description":"Machete fight ends with the live of a youngster",
+      "date":"2019-10-11T22:10:23.533Z",
+      "event_count": "1",
+      "__v":0
+   },
+   {
+      "coords":[
+         41.376565, 2.164565
+      ],
+      "_id":"5da0fd6ba4cc5b3024a28f2b",
+      "type":"kidnapping",
+      "description":"Multiple alert condensed in one: suburban kids constantly getting lost",
+      "date":"2019-10-11T22:08:43.682Z",
+      "event_count": "2",
+
+      "__v":0
+   },
+   {
+      "coords":[
+         41.379616, 2.170047
+      ],
+      "_id":"5da0fd6ba4cc5b3024a28f2b",
+      "type":"voluntary-manslaughter",
+      "description":"Brutal killing of a local by a drunk homeless",
+      "date":"2019-10-11T22:08:43.682Z",
+      "event_count": "2",
+
+      "__v":0
+   }
+]
