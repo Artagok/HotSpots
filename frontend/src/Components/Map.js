@@ -69,12 +69,6 @@ class Map extends Component {
             </CircleMarker>
           );
         })}
-
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
       </LeafletMap>
     );
   }
