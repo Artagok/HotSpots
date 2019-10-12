@@ -1,11 +1,12 @@
-import React from 'react';
-import './App.css';
-import Map from './Components/Map';
+import React from "react";
+import "./App.css";
+import Map from "./Components/Map";
+// import "leaflet/dist/leaflet.css";
 
 function App() {
   return (
     <div className="App">
-      <Map></Map>
+      <Map />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
 import "./Map.css";
+import "leaflet/dist/leaflet.css";
 
 // Basic example from docs
-class MapExample extends React.Component {
+class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +17,7 @@ class MapExample extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <Map center={position} zoom={this.state.zoom}>
+      <LeafletMap center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
@@ -26,11 +27,11 @@ class MapExample extends React.Component {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-      </Map>
+      </LeafletMap>
     );
   }
 }
 
-export default MapExample; // ?
+export default Map; // ?
 
 // ReactDOM.render(<MapExample />, document.getElementById("container"));
