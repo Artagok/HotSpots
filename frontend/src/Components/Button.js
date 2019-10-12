@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import './Button.css'
 
-const Button = (props) => {
-  const [dropdownOpen, setOpen] = useState(false);
+class Button extends Component {
+  constructor(props){
+    super(props);
 
-  const toggle = () => setOpen(!dropdownOpen);
+    this.toggle = this.toggle.bind(this);
+    
+    this.state = {
+      dropdownOpen: false
+    };
+  }
 
+  toggle() { 
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+  
+  /*handleClick(eventname) => {
+      //IMPLEMENTAR CLICK HANDLER
+  }*/
+
+
+  render() {
   return (
-    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+    <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
       <DropdownToggle caret>
         Select incident
       </DropdownToggle>
       <DropdownMenu>
+        <DropdownItem onCLick={this.handleClick}>Robatori</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem>Accident de trànsit</DropdownItem>
+        <DropdownItem divider />
         <DropdownItem>Voluntary manslaughter</DropdownItem>
         <DropdownItem divider />
         <DropdownItem>Burglary</DropdownItem>
@@ -45,6 +67,7 @@ const Button = (props) => {
       </DropdownMenu>
     </ButtonDropdown>
   );
+  }
 }
 
 export default Button;
