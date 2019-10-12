@@ -10,7 +10,7 @@ function App() {
       <Map className="map" />
 
       <div className="menu-bar">
-        <Button />
+        {/* <Button /> */}
       </div>
     </div>
   );

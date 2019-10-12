@@ -10,3 +10,9 @@
   right: 0;
   z-index: 999;  
 }
+
+.menu-map {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+}
