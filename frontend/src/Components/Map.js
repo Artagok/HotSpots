@@ -27,7 +27,7 @@ class Map extends Component {
   }
 
   handleRefresh() {
-    const url = "http://localhost:5000/api/pushpins";
+    const url = "http://104.248.38.192:8000/type"; // "http://localhost:5000/api/pushpins";
     fetch(url)
       .then(response => response.json())
       .then(jsonData => {
@@ -81,7 +81,7 @@ class Map extends Component {
             return (
               <CircleMarker
                 key={k}
-                center={[hotspot["coords"][1], hotspot["coords"][0]]}
+                center={[hotspot["coords"][0], hotspot["coords"][1]]}
                 radius={20 * Math.log(hotspot["event_count"])}
                 fillOpacity={0.5}
                 stroke={false}
