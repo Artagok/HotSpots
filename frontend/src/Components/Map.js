@@ -18,21 +18,22 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      height: 200,
+      width: 800,
       lat: 41.389,
       lng: 2.16,
       zoom: 13
     };
   }
 
-  handleRefresh(){
-    const url = "http://localhost:5000/api/pushpins"
+  handleRefresh() {
+    const url = "http://localhost:5000/api/pushpins";
 
     fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            console.log(data)
-          });
-
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      });
 
     data.city = [
       {
@@ -40,7 +41,7 @@ class Map extends Component {
         coordinates: [2.20268, 41.384668],
         event_count: 10
       }
-    ]
+    ];
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
@@ -49,9 +50,9 @@ class Map extends Component {
     this.setState({ height: height / 2, width: height * 1.5 });
   }
 
-  componentWillMount() {
-    this.updateDimensions();
-  }
+  // componentWillMount() {
+  //   this.updateDimensions();
+  // }
 
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions.bind(this));
@@ -65,41 +66,36 @@ class Map extends Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
-      <button onClick={this.handleRefresh}>
-        Click me!
-      </button>
-      <LeafletMap
-        center={position}
-        zoom={this.state.zoom}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-        />
+        <button onClick={this.handleRefresh}>Click me!</button>
+        <LeafletMap center={position} zoom={this.state.zoom}>
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          />
 
-        {data.city.map((city, k) => {
-          return (
-            <CircleMarker
-              key={k}
-              center={[city["coordinates"][1], city["coordinates"][0]]}
-              radius={20 * Math.log(city["event_count"])}
-              fillOpacity={0.5}
-              stroke={false}
-            >
-              <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
-                <span>
-                  {"Evento:" +
-                    city["description"] +
-                    " -- " +
-                    "Number of events:" +
-                    " " +
-                    city["event_count"]}
-                </span>
-              </Tooltip>
-            </CircleMarker>
-          );
-        })}
-      </LeafletMap>
+          {data.city.map((city, k) => {
+            return (
+              <CircleMarker
+                key={k}
+                center={[city["coordinates"][1], city["coordinates"][0]]}
+                radius={20 * Math.log(city["event_count"])}
+                fillOpacity={0.5}
+                stroke={false}
+              >
+                <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
+                  <span>
+                    {"Evento:" +
+                      city["description"] +
+                      " -- " +
+                      "Number of events:" +
+                      " " +
+                      city["event_count"]}
+                  </span>
+                </Tooltip>
+              </CircleMarker>
+            );
+          })}
+        </LeafletMap>
       </div>
     );
   }
