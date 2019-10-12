@@ -49,9 +49,9 @@ class Map extends Component {
     this.setState({ height: height / 2, width: height * 1.5 });
   }
 
-  componentWillMount() {
-    this.updateDimensions();
-  }
+  // componentWillMount() {
+  //   this.updateDimensions();
+  // }
 
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions.bind(this));
