@@ -6,8 +6,15 @@ const Button = (props) => {
 
   const toggle = () => setOpen(!dropdownOpen);
 
+  const divStyle = {
+    position: 'fixed',
+    bottom: 100,
+    right: 100,
+    zIndex:100,
+  };
+
   return (
-    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+    <ButtonDropdown style={divStyle} isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
         Button Dropdown
       </DropdownToggle>

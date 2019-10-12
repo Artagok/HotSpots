@@ -1,0 +1,9 @@
+positionInBottom {
+    position: 'relative';
+    width: 50;
+    height: 50;
+    top: 160 - 26;
+    left: Dimensions.get('window').width - 70;
+    backgroundColor: 'red';
+    zIndex: 100;
+}
