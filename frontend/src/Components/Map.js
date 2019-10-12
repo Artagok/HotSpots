@@ -53,6 +53,7 @@ class Map extends Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions.bind(this));
+    this.handleRefresh();
   }
 
   componentWillUnmount() {
@@ -61,11 +62,10 @@ class Map extends Component {
 
   render() {
     //init state
-    //this.handleRefresh();
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
-        <button onClick={this.handleRefresh}>Click me!</button>
+        <button onClick={this.handleRefresh}>Refresh</button>
 
         <LeafletMap
           center={position}
