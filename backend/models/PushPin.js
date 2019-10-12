@@ -7,6 +7,7 @@ const PushPinSchema = new Schema ({
   description: { type: String },
   date: { type: Date, default: Date.now },
   coords: {type: [Number], required: true },
+  event_count: {type: Number, required: true }
   // img { type: Buffer }
 });
 
