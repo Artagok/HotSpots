@@ -7,6 +7,7 @@ const PushPin = require('../../models/PushPin');
 // @desc    Get All PushPins
 // @access  Public
 router.get('/', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   PushPin.find()
     .sort({ date: -1})
     .then(pushpins => res.json(pushpins))
