@@ -26,21 +26,19 @@ class Map extends Component {
     this.handleRefresh = this.handleRefresh.bind(this);
   }
 
-  handleRefresh(){
-    const url = "http://localhost:5000/api/pushpins"
+  handleRefresh() {
+    const url = "http://localhost:5000/api/pushpins";
     fetch(url)
-          .then(response => response.json())
-          .then(jsonData => {
-            let newData = {
-              city: []
-            }
-            newData.city = jsonData;
-            console.log(this.state.data);
-            console.log(newData);
-            this.setState({
-              data: newData
-            })
-          });
+      .then(response => response.json())
+      .then(jsonData => {
+        let newData = {};
+        newData = { city: jsonData };
+        console.log(this.state.data);
+        console.log(newData);
+        this.setState({
+          data: newData
+        });
+      });
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
@@ -67,43 +65,41 @@ class Map extends Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
-      <button onClick={this.handleRefresh}>
-        Click me!
-      </button>
-      
-      <LeafletMap
-        center={position}
-        zoom={this.state.zoom}
-        style={{ height: this.state.height }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-        />
+        <button onClick={this.handleRefresh}>Click me!</button>
 
-        {this.state.data.city.map((hotspot, k) => {
-          return (
-            <CircleMarker
-              key={k}
-              center={[hotspot["coords"][1], hotspot["coords"][0]]}
-              radius={20 * Math.log(hotspot["event_count"])}
-              fillOpacity={0.5}
-              stroke={false}
-            >
-              <Tooltip direction="right" offset={[-8, -2]} Opacity={1}>
-                <span>
-                  {"Evento:" +
-                    hotspot["description"] +
-                    " -- " +
-                    "Number of events:" +
-                    " " +
-                    hotspot["event_count"]}
-                </span>
-              </Tooltip>
-            </CircleMarker>
-          );
-        })}
-      </LeafletMap>
+        <LeafletMap
+          center={position}
+          zoom={this.state.zoom}
+          style={{ height: this.state.height }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          />
+
+          {this.state.data.city.map((hotspot, k) => {
+            return (
+              <CircleMarker
+                key={k}
+                center={[hotspot["coords"][1], hotspot["coords"][0]]}
+                radius={20 * Math.log(hotspot["event_count"])}
+                fillOpacity={0.5}
+                stroke={false}
+              >
+                <Tooltip direction="right" offset={[-8, -2]} Opacity={1}>
+                  <span>
+                    {"Evento:" +
+                      hotspot["description"] +
+                      " -- " +
+                      "Number of events:" +
+                      " " +
+                      hotspot["event_count"]}
+                  </span>
+                </Tooltip>
+              </CircleMarker>
+            );
+          })}
+        </LeafletMap>
       </div>
     );
   }
