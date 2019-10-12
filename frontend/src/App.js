@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
+import Map from './Components/Map';
 
 function App() {
   return (
     <div className="App">
-      <h1>HotSpots</h1>
-      <h3>Under Construction!!</h3>
+      <Map></Map>
     </div>
   );
 }

@@ -1,9 +1,11 @@
+import React, { Component } from 'react';
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import './Map.css';
 
 // Basic example from docs
 class MapExample extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       lat: 51.505,
       lng: -0.09,
