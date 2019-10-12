@@ -8,7 +8,8 @@ function App() {
   return (
     <div className="App">
       <Map />
-      <Button />
+      <Button style={{ position: "absolute" }} />
+      {/* <Button /> */}
     </div>
   );
 }

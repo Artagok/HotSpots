@@ -20,7 +20,7 @@ class Map extends Component {
     this.state = {
       lat: 41.389,
       lng: 2.16,
-      zoom: 16
+      zoom: 13
     };
   }
 
@@ -46,7 +46,7 @@ class Map extends Component {
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
   updateDimensions() {
     const height = window.innerWidth >= 992 ? window.innerHeight : 400;
-    this.setState({ height: height });
+    this.setState({ height: height / 2, width: height * 1.5 });
   }
 
   componentWillMount() {
