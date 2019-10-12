@@ -6,10 +6,12 @@ import Button from "./Components/Button";
 
 function App() {
   return (
-    <div className="App">
-      <Map />
-      <Button style={{ position: "absolute" }} />
-      {/* <Button /> */}
+    <div className="body">
+      <Map class='map'/>
+
+      <div class='menu-bar'>
+        <Button />
+      </div>
     </div>
   );
 }

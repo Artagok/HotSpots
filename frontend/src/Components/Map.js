@@ -37,47 +37,39 @@ class Map extends Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <div style={{ height: 400, width: 800 }}>
-        <LeafletMap
-          center={position}
-          zoom={this.state.zoom}
-          style={{ height: this.state.height }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          />
+      <LeafletMap
+        center={position}
+        zoom={this.state.zoom}
+        //style={{ height: this.state.height }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+        />
 
-          {data.city.map((city, k) => {
-            return (
-              <CircleMarker
-                key={k}
-                center={[city["coordinates"][1], city["coordinates"][0]]}
-                radius={20 * Math.log(city["event_count"])}
-                fillOpacity={0.5}
-                stroke={false}
-              >
-                <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
-                  <span>
-                    {"Evento:" +
-                      city["description"] +
-                      " -- " +
-                      "Number of events:" +
-                      " " +
-                      city["event_count"]}
-                  </span>
-                </Tooltip>
-              </CircleMarker>
-            );
-          })}
-
-          <Marker position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </LeafletMap>
-      </div>
+        {data.city.map((city, k) => {
+          return (
+            <CircleMarker
+              key={k}
+              center={[city["coordinates"][1], city["coordinates"][0]]}
+              radius={20 * Math.log(city["event_count"])}
+              fillOpacity={0.5}
+              stroke={false}
+            >
+              <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
+                <span>
+                  {"Evento:" +
+                    city["description"] +
+                    " -- " +
+                    "Number of events:" +
+                    " " +
+                    city["event_count"]}
+                </span>
+              </Tooltip>
+            </CircleMarker>
+          );
+        })}
+      </LeafletMap>
     );
   }
 }

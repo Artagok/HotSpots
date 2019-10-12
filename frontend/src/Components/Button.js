@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import './Button.css'
 
 const Button = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const divStyle = {
-    position: 'fixed',
-    bottom: 100,
-    right: 100,
-    zIndex:100,
-  };
-
   return (
-    <ButtonDropdown style={divStyle} isOpen={dropdownOpen} toggle={toggle}>
+    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
-        Button Dropdown
+        Select incident
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem>Robatori</DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem>Accident de trànsit</DropdownItem>
-        <DropdownItem divider />
         <DropdownItem>Voluntary manslaughter</DropdownItem>
         <DropdownItem divider />
         <DropdownItem>Burglary</DropdownItem>
