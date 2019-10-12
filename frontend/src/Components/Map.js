@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
 import { CircleMarker, Tooltip } from "react-leaflet";
 import emptyData from "./data.js";
+import { Button } from 'reactstrap';
 // import "./Map.css";
 import "leaflet/dist/leaflet.css";
 
-function refreshButton(props) {
-  return (
-    <button className="refreshButton" onClick={props.onClick}>
-      refresh
-    </button>
-  );
-}
+// function refreshButton(props) {
+//   return (
+//     <button className="refreshButton" onClick={props.onClick}>
+//       refresh
+//     </button>
+//   );
+// }
 
 // Basic example from docs
 class Map extends Component {
@@ -65,7 +66,7 @@ class Map extends Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
-        <button onClick={this.handleRefresh}>Refresh</button>
+        <Button className='refresh-button' onClick={this.handleRefresh}>Refresh</Button>
 
         <LeafletMap
           center={position}
