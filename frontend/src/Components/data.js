@@ -5,49 +5,49 @@
 let data = {
   city: [
     {
-      description: "Tokyo",
-      coordinates: [139.6917, 35.6895],
-      event_count: 37843000
+      description: "descripcion del evento",
+      coordinates: [2.20268, 41.384666],
+      event_count: 10
     },
     {
-      description: "Jakarta",
-      coordinates: [106.865, -6.1751],
-      event_count: 30539000
+      description: "descripcion del evento",
+      coordinates: [2.18268, 41.394666],
+      event_count: 15
     },
     {
-      description: "Delhi",
-      coordinates: [77.1025, 28.7041],
-      event_count: 24998000
+      description: "descripcion del evento",
+      coordinates: [2.17268, 41.385666],
+      event_count: 10
     },
     {
-      description: "Seoul",
-      coordinates: [126.978, 37.5665],
-      event_count: 23480000
+      description: "descripcion del evento",
+      coordinates: [2.16268, 41.384656],
+      event_count: 15
     },
     {
-      description: "Shanghai",
-      coordinates: [121.4737, 31.2304],
-      event_count: 23416000
+      description: "descripcion del evento",
+      coordinates: [2.15268, 41.41666],
+      event_count: 19
     },
     {
-      description: "Karachi",
-      coordinates: [67.0099, 24.8615],
-      event_count: 22123000
+      description: "descripcion del evento",
+      coordinates: [2.14268, 41.41566],
+      event_count: 8
     },
     {
-      description: "Beijing",
-      coordinates: [116.4074, 39.9042],
-      event_count: 21009000
+      description: "descripcion del evento",
+      coordinates: [2.13268, 41.417666],
+      event_count: 2
     },
     {
-      description: "Mumbai",
-      coordinates: [72.8777, 19.076],
-      event_count: 17712000
+      description: "descripcion del evento",
+      coordinates: [2.12268, 41.384666],
+      event_count: 1
     },
     {
-      description: "Osaka",
-      coordinates: [135.5022, 34.6937],
-      event_count: 17444000
+      description: "descripcion del evento",
+      coordinates: [2.11268, 41.384666],
+      event_count: 20
     }
   ],
   minLat: 41.384666,

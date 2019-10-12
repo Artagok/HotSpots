@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
-import { CircleMarker } from "react-leaflet";
+import { CircleMarker, Tooltip } from "react-leaflet";
 import data from "./data.js";
 // import "./Map.css";
 import "leaflet/dist/leaflet.css";
@@ -49,9 +49,21 @@ class Map extends Component {
 
         {data.city.map(city => {
           return (
-            <CircleMarker
+            <CircleMarker>
               center={[city["coordinates"][1], city["coordinates"][0]]}
-            />
+              radius={20 * Math.log(city["event_count"])}
+              fillOpacity={0.5}
+              stroke={false}
+              <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
+                <span>
+                  {city["description"] +
+                    ": " +
+                    "event_count" +
+                    " " +
+                    city["event_count"]}
+                </span>
+              </Tooltip>
+            </CircleMarker>
           );
         })}
 
