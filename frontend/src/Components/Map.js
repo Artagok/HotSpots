@@ -12,14 +12,14 @@ class Map extends Component {
     this.state = {
       lat: 41.389,
       lng: 2.16,
-      zoom: 16
+      zoom: 13
     };
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
   updateDimensions() {
     const height = window.innerWidth >= 992 ? window.innerHeight : 400;
-    this.setState({ height: height });
+    this.setState({ height: height / 2, width: height * 1.5 });
   }
 
   componentWillMount() {
@@ -37,45 +37,47 @@ class Map extends Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap
-        center={position}
-        zoom={this.state.zoom}
-        style={{ height: this.state.height }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-        />
+      <div style={{ height: 400, width: 800 }}>
+        <LeafletMap
+          center={position}
+          zoom={this.state.zoom}
+          style={{ height: this.state.height }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          />
 
-        {data.city.map((city, k) => {
-          return (
-            <CircleMarker
-              key={k}
-              center={[city["coordinates"][1], city["coordinates"][0]]}
-              radius={20 * Math.log(city["event_count"])}
-              fillOpacity={0.5}
-              stroke={false}
-            >
-              <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
-                <span>
-                  {"Evento:" +
-                    city["description"] +
-                    " -- " +
-                    "Number of events:" +
-                    " " +
-                    city["event_count"]}
-                </span>
-              </Tooltip>
-            </CircleMarker>
-          );
-        })}
+          {data.city.map((city, k) => {
+            return (
+              <CircleMarker
+                key={k}
+                center={[city["coordinates"][1], city["coordinates"][0]]}
+                radius={20 * Math.log(city["event_count"])}
+                fillOpacity={0.5}
+                stroke={false}
+              >
+                <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
+                  <span>
+                    {"Evento:" +
+                      city["description"] +
+                      " -- " +
+                      "Number of events:" +
+                      " " +
+                      city["event_count"]}
+                  </span>
+                </Tooltip>
+              </CircleMarker>
+            );
+          })}
 
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </LeafletMap>
+          <Marker position={position}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </LeafletMap>
+      </div>
     );
   }
 }
