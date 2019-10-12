@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
 import { CircleMarker, Tooltip } from "react-leaflet";
-import data from "./data.js";
+import emptyData from "./data.js";
 // import "./Map.css";
 import "leaflet/dist/leaflet.css";
 
@@ -18,29 +18,29 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: emptyData,
       lat: 41.389,
       lng: 2.16,
       zoom: 13
     };
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
 
   handleRefresh(){
     const url = "http://localhost:5000/api/pushpins"
-
     fetch(url)
           .then(response => response.json())
-          .then(data => {
-            console.log(data)
+          .then(jsonData => {
+            let newData = {
+              city: []
+            }
+            newData.city = jsonData;
+            console.log(this.state.data);
+            console.log(jsonData);
+            this.setState({
+              data: newData
+            })
           });
-
-
-    data.city = [
-      {
-        description: "epaaaaa",
-        coordinates: [2.20268, 41.384668],
-        event_count: 10
-      }
-    ]
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
@@ -62,12 +62,15 @@ class Map extends Component {
   }
 
   render() {
+    //init state
+    //this.handleRefresh();
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
       <button onClick={this.handleRefresh}>
         Click me!
       </button>
+      
       <LeafletMap
         center={position}
         zoom={this.state.zoom}
@@ -78,23 +81,23 @@ class Map extends Component {
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
         />
 
-        {data.city.map((city, k) => {
+        {this.state.data.city.map((hotspot, k) => {
           return (
             <CircleMarker
               key={k}
-              center={[city["coordinates"][1], city["coordinates"][0]]}
-              radius={20 * Math.log(city["event_count"])}
+              center={[hotspot["coords"][1], hotspot["coords"][0]]}
+              radius={20 * Math.log(hotspot["event_count"])}
               fillOpacity={0.5}
               stroke={false}
             >
-              <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
+              <Tooltip direction="right" offset={[-8, -2]} Opacity={1}>
                 <span>
                   {"Evento:" +
-                    city["description"] +
+                    hotspot["description"] +
                     " -- " +
                     "Number of events:" +
                     " " +
-                    city["event_count"]}
+                    hotspot["event_count"]}
                 </span>
               </Tooltip>
             </CircleMarker>
