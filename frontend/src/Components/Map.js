@@ -48,7 +48,7 @@ class Map extends Component {
       marker_lat: 41.389,
       marker_lng: 2.16,
       zoom: 13,
-      type: "",
+      type: "voluntary-manslaughter",
       description: "",
       coords: [],
       event_count: Math.floor(Math.random() * 10) + 5,
@@ -194,9 +194,7 @@ class Map extends Component {
               name="select"
               id="exampleSelect"
             >
-              <option value="voluntary-manslaughter">
-                Voluntary Manslaughter
-              </option>
+              <option value="voluntary-manslaughter">Voluntary Manslaughter</option>
               <option value="kidnapping">kidnapping</option>
               <option value="burglary">Burglary</option>
               <option value="child-abuse">Child Abuse</option>
