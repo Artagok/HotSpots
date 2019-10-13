@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 from scipy.spatial.distance import cdist
 import os
+import json
 
 cwd = os.getcwd()
 
@@ -75,7 +76,7 @@ def fetch_locales(lat: float, lon: float, ndigits: int = 3):
     # except IndexError:
     #    inactive = 0
 
-    return {"active": int(active), "inactive": int(inactive)}
+    return json.dumps({"active": int(active), "inactive": int(inactive)})
 
 
 def closest_point(point, points):
@@ -125,11 +126,9 @@ def fetch_qualitat(lat: float, lon: float, ndigits: int = 3):
     except:
         qa_pobre = 0
 
-    return {
-        "qa_high": int(qa_bona),
-        "qa_medium": int(qa_regular),
-        "qa_low": int(qa_pobre),
-    }
+    return json.dumps(
+        {"qa_high": int(qa_bona), "qa_medium": int(qa_regular), "qa_low": int(qa_pobre)}
+    )
 
 
 def fetch_ensenyament(lat: float, lon: float, ndigits: int = 3):
@@ -161,4 +160,4 @@ def fetch_ensenyament(lat: float, lon: float, ndigits: int = 3):
         & df["latitud"].between(lat_min, lat_max, inclusive=True)
     ]
 
-    return {"equip_infantil": int(df.shape[0])}
+    return json.dumps({"equip_infantil": int(df.shape[0])})
