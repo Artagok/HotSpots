@@ -2,7 +2,8 @@
 
 ## ⚡️ Easy Incident Monitoring :mag:
 
-Read the project presentation at [devpost](https://devpost.com/software/hotspots-f7xnvh)
+Read the project presentation at [devpost](https://devpost.com/software/hotspots-f7xnvh).
+
 We designed a web app that enables citizens to report incidents in real time as well as check the incidents around them.
 
 The app has a 3 part architecture.
