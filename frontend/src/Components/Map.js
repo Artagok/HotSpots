@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
 import { CircleMarker, Tooltip } from "react-leaflet";
 import emptyData from "./data.js";
-import { Button, FormGroup, Input } from 'reactstrap';
+import { Button, FormGroup, Input } from "reactstrap";
 // import "./Map.css";
 import "leaflet/dist/leaflet.css";
 import { randomBytes } from "crypto";
@@ -32,10 +32,11 @@ class Map extends Component {
       event_count: Math.floor(Math.random() * 10) + 5
     };
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleRefresh() {
-    const url = "http://104.248.38.192:8000/type"; // "http://localhost:5000/api/pushpins";
+    const url = "http://104.248.38.192:8000/type"; // "http://localhost:5000/api/pushpins"
     fetch(url)
       .then(response => response.json())
       .then(jsonData => {
@@ -47,6 +48,15 @@ class Map extends Component {
           data: newData
         });
       });
+  }
+
+  handleClick(id) {
+    console.log(id);
+    let newData = this.state.data;
+    newData.city[id].event_count++;
+    this.setState({
+      data: newData
+    });
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
@@ -72,72 +82,144 @@ class Map extends Component {
     this.setState({
       type: e.target.value
     });
-  }
+  };
   updateDescription = e => {
     this.setState({
       description: e.target.value
     });
-  }
+  };
   updateCoords = e => {
     const coords = e.latlng;
+    console.log(coords);
     this.setState({
-      marker_lat: coords.lat.toFixed(3),
-      marker_lng: coords.lng.toFixed(3)
+      marker_lat: parseFloat(coords.lat.toFixed(3)),
+      marker_lng: parseFloat(coords.lng.toFixed(3))
     });
-  }
-  render() {
+    console.log(typeof this.state.marker_lat);
+  };
+  postPushPin = () => {
+    const PushPin = {
+      type: this.state.type,
+      description: this.state.description,
+      coords: [this.state.marker_lng, this.state.marker_lat],
+      event_count: this.state.event_count
+    };
+    console.log(PushPin);
+    const url = "http://104.248.38.192:8000/newpin"; // "https://localhost:5000/api/pushpins";
 
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(PushPin)
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error("Error: ", err);
+      });
+  };
+
+  render() {
     //init state
     const position = [this.state.lat, this.state.lng];
     return (
       <div>
-        <div className="menu-map" style={{
+        <div
+          className="menu-map"
+          style={{
             display: "flex",
             justifyContent: "space-between",
             alignContent: "stretch",
             alignItems: "stretch",
             backgroundColor: "#dedede"
-        }}>
-          <Button className='refresh-button' onClick={this.handleRefresh}>Refresh</Button>
-          <FormGroup style={{ display: "inline-block",width: "20%", margin: "0 0 0 4rem" }}>
-            <Input onChange={this.updateType} type="select" name="select" id="exampleSelect">
-              <option value="Voluntary Manslaughter">Voluntary Manslaughter</option>
-              <option value="Burglary">Burglary</option>
-              <option value="Child Abuse">Child Abuse</option>
-              <option value="Rape">Rape</option>
-              <option value="Homicide">Homicide</option>
-              <option value="Theft">Theft</option>
-              <option value="Shoplifting">Shoplifting</option>
-              <option value="Vandalism">Vandalism</option>
-              <option value="Sexual Assault">Sexual Assault</option>
-              <option value="Drug Traffickin">Drug Traffickin</option>
-              <option value="Fraud">Fraud</option>
-              <option value="Public Intoxication">Public Intoxication</option>
-              <option value="Disturbing the Peace">Disturbing the Peace</option>
-              <option value="Extortion">Extortion</option>
-              <option value="Justificable Homicide">Justificable Homicide</option>
-              <option value="Drug Possession">Drug Possession</option>
+          }}
+        >
+          <Button className="refresh-button" onClick={this.handleRefresh}>
+            Refresh
+          </Button>
+          <FormGroup
+            style={{
+              display: "inline-block",
+              width: "20%",
+              margin: "0 0 0 4rem"
+            }}
+          >
+            <Input
+              onChange={this.updateType}
+              type="select"
+              name="select"
+              id="exampleSelect"
+            >
+              <option value="voluntary-manslaughter">
+                Voluntary Manslaughter
+              </option>
+              <option value="kidnapping">kidnapping</option>
+              <option value="burglary">Burglary</option>
+              <option value="child-abuse">Child Abuse</option>
+              <option value="rape">Rape</option>
+              <option value="homicide">Homicide</option>
+              <option value="theft">Theft</option>
+              <option value="shoplifting">Shoplifting</option>
+              <option value="vandalism">Vandalism</option>
+              <option value="sexual-assault">Sexual Assault</option>
+              <option value="drug-traffickin">Drug Traffickin</option>
+              <option value="fraud">Fraud</option>
+              <option value="public-intoxication">Public Intoxication</option>
+              <option value="disturbing-the-peace">Disturbing the Peace</option>
+              <option value="extortion">Extortion</option>
+              <option value="justificable-homicide">
+                Justificable Homicide
+              </option>
+              <option value="drug-possession">Drug Possession</option>
             </Input>
           </FormGroup>
-          <Input 
+          <Input
             onChange={this.updateDescription}
-            type="textarea" 
-            name="text" 
-            id="exampleText" 
-            placeholder="Description of the event..." 
-            style={{ display: "inline-block", width: "30%", height: "4rem", resize: "none" }} />
-          <div style={{ marginLeft: "0.5rem"}}>
-            <p style={{ marginBottom: "0"}}>Click on the map to set the coordinates:</p>
-            <span>Lon:</span><Input readOnly value={this.state.marker_lng} style={{ display: "inline-block", width: "25%", marginRight: "0.5rem" }}></Input>
-            <span>Lat:</span><Input readOnly value={this.state.marker_lat} style={{ display: "inline-block", width: "25%" }}></Input>
+            type="textarea"
+            name="text"
+            id="exampleText"
+            placeholder="Description of the event..."
+            style={{
+              display: "inline-block",
+              width: "30%",
+              height: "4rem",
+              resize: "none"
+            }}
+          />
+          <div style={{ marginLeft: "0.5rem" }}>
+            <p style={{ marginBottom: "0" }}>
+              Click on the map to set the coordinates:
+            </p>
+            <span>Lon:</span>
+            <Input
+              readOnly
+              value={this.state.marker_lng}
+              style={{
+                display: "inline-block",
+                width: "25%",
+                marginRight: "0.5rem"
+              }}
+            ></Input>
+            <span>Lat:</span>
+            <Input
+              readOnly
+              value={this.state.marker_lat}
+              style={{ display: "inline-block", width: "25%" }}
+            ></Input>
           </div>
-          <Button color="success" style={{ padding: "0 3rem" }}>Post!</Button>
+          <Button
+            onClick={this.postPushPin}
+            color="success"
+            style={{ padding: "0 3rem" }}
+          >
+            Post!
+          </Button>
         </div>
 
         <LeafletMap
           center={position}
           zoom={this.state.zoom}
-          style={{ height: this.state.height }}
+          //style={{ height: this.state.height }}
           onClick={this.updateCoords}
         >
           <TileLayer
@@ -150,17 +232,16 @@ class Map extends Component {
               <CircleMarker
                 key={k}
                 center={[hotspot["coords"][0], hotspot["coords"][1]]}
-                radius={20 * Math.log(hotspot["event_count"])}
-                fillOpacity={0.5}
+                radius={10 * Math.log(hotspot["event_count"]) + 15}
+                fillOpacity={0.5 * (Math.log(hotspot["event_count"]) + 0.2)}
+                color={"red"}
                 stroke={false}
+                onClick={() => this.handleClick(k)}
               >
                 <Tooltip direction="right" offset={[-8, -2]} Opacity={1}>
                   <span>
-                    {"Evento:" +
-                      hotspot["description"] +
-                      " -- " +
-                      "Number of events:" +
-                      " " +
+                    {hotspot["description"] +
+                      " - Verification count: " +
                       hotspot["event_count"]}
                   </span>
                 </Tooltip>
