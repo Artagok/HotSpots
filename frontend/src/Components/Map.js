@@ -153,6 +153,7 @@ class Map extends Component {
               <option value="voluntary-manslaughter">
                 Voluntary Manslaughter
               </option>
+              <option value="kidnapping">kidnapping</option>
               <option value="burglary">Burglary</option>
               <option value="child-abuse">Child Abuse</option>
               <option value="rape">Rape</option>
@@ -232,7 +233,7 @@ class Map extends Component {
                 key={k}
                 center={[hotspot["coords"][0], hotspot["coords"][1]]}
                 radius={10 * Math.log(hotspot["event_count"]) + 15}
-                fillOpacity={0.2 * Math.log(hotspot["event_count"])}
+                fillOpacity={0.5 * (Math.log(hotspot["event_count"]) + 0.2)}
                 color={"red"}
                 stroke={false}
                 onClick={() => this.handleClick(k)}
