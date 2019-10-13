@@ -36,7 +36,7 @@ class Map extends Component {
   }
 
   handleRefresh() {
-    const url = "http://104.248.38.192:8000/type"; // "http://localhost:5000/api/pushpins";
+    const url = "http://104.248.38.192:8000/type"; // "http://localhost:5000/api/pushpins"
     fetch(url)
       .then(response => response.json())
       .then(jsonData => {
@@ -90,22 +90,33 @@ class Map extends Component {
   }
   updateCoords = e => {
     const coords = e.latlng;
+    console.log(coords);
     this.setState({
-      marker_lat: coords.lat.toFixed(3),
-      marker_lng: coords.lng.toFixed(3)
+      marker_lat: parseFloat(coords.lat.toFixed(3)),
+      marker_lng: parseFloat(coords.lng.toFixed(3))
     });
+    console.log(typeof(this.state.marker_lat));
   }
   postPushPin = () => {
     const PushPin = {
       type: this.state.type,
       description: this.state.description,
       coords: [
-        this.state.marker_lat,
-        this.state.marker_lng],
+        this.state.marker_lng,
+        this.state.marker_lat],
       event_count: this.state.event_count
     }
+    console.log(PushPin);
+    const url =  "http://104.248.38.192:8000/newpin"; // "https://localhost:5000/api/pushpins";
 
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(PushPin)
+    })
+      .then(res => { console.log(res) })
+      .catch(err => { console.error("Error: ", err); });
   }
+  
   render() {
 
     //init state
