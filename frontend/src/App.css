@@ -4,20 +4,8 @@
     height: 100vh;
 }
 
-.map {
-    position: initial;
-    width: 100vw;
-}
-
 .leaflet-container {
     position: initial;
     width: 100vw;
     height: 100vh;
-}
-
-.menu-bar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 999;
 }
