@@ -1,3 +1,6 @@
 fastapi[all]
 pymongo
 dnspython
+pandas
+numpy
+scipy
