@@ -2,39 +2,61 @@ import React, { Component, createRef } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
 import { CircleMarker, Tooltip } from "react-leaflet";
 import emptyData from "./data.js";
-import { Button, FormGroup, Input, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import {
+  Button,
+  FormGroup,
+  Input,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle
+} from "reactstrap";
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
 import { randomBytes } from "crypto";
 
-const EventCard = (props) => {
+const EventCard = props => {
   const verificateCard = () => {
-    props.verificateCard()
+    props.verificateCard();
   };
   const closeCard = () => {
-    props.closeCard()
+    props.closeCard();
   };
 
-  if (props.show){
+  if (props.show) {
     return (
       <div>
         <Card>
-          <CardImg top width="100%" src="https://talkradio.co.uk/sites/talkradio.co.uk/files/styles/large/public/field/image/201708/lasramblas3.jpg?itok=X2svnMjn" alt="Card image cap" />
+          <CardImg
+            top
+            width="100%"
+            src="https://talkradio.co.uk/sites/talkradio.co.uk/files/styles/large/public/field/image/201708/lasramblas3.jpg?itok=X2svnMjn"
+            alt="Card image cap"
+          />
           <CardBody>
             <CardTitle>{props.title}</CardTitle>
             <CardSubtitle>{props.subtitle}</CardSubtitle>
             <CardText>{props.text}</CardText>
             <Button onClick={closeCard}>Close</Button>
-            <Button style={{position:"absolute", right:"10%", backgroundColor:"green"}}onClick={verificateCard}>+1</Button>
+            <Button
+              style={{
+                position: "absolute",
+                right: "10%",
+                backgroundColor: "green"
+              }}
+              onClick={verificateCard}
+            >
+              +1
+            </Button>
           </CardBody>
         </Card>
       </div>
     );
   } else {
-    return (
-      <div></div>
-    );
-  };
+    return <div></div>;
+  }
 };
 
 // Basic example from docs
@@ -64,13 +86,13 @@ class Map extends Component {
     this.verificateCardHandler = this.verificateCardHandler.bind(this);
   }
 
-  closeCardHandler(){
+  closeCardHandler() {
     this.setState({
       card_show: false
     });
   }
 
-  verificateCardHandler(){
+  verificateCardHandler() {
     let newData = this.state.data;
     newData.city[this.state.current_id].event_count++;
     this.setState({
@@ -147,7 +169,10 @@ class Map extends Component {
       type: this.state.type,
       description: this.state.description,
       coords: [this.state.marker_lat, this.state.marker_lng],
-      event_count: this.state.event_count
+      event_count: this.state.event_count,
+      locale: "",
+      q_air: "",
+      child_infra: ""
     };
     console.log(PushPin);
     const url = "http://104.248.38.192:8000/newpin"; // "https://localhost:5000/api/pushpins";
@@ -194,7 +219,9 @@ class Map extends Component {
               name="select"
               id="exampleSelect"
             >
-              <option value="voluntary-manslaughter">Voluntary Manslaughter</option>
+              <option value="voluntary-manslaughter">
+                Voluntary Manslaughter
+              </option>
               <option value="kidnapping">kidnapping</option>
               <option value="burglary">Burglary</option>
               <option value="child-abuse">Child Abuse</option>
@@ -292,7 +319,14 @@ class Map extends Component {
           })}
         </LeafletMap>
         <div className="card-container">
-          <EventCard verificateCard={this.verificateCardHandler} closeCard={this.closeCardHandler} show={this.state.card_show} title={this.state.card_title} subtitle={this.state.card_subtitle} text={this.state.card_text}/>
+          <EventCard
+            verificateCard={this.verificateCardHandler}
+            closeCard={this.closeCardHandler}
+            show={this.state.card_show}
+            title={this.state.card_title}
+            subtitle={this.state.card_subtitle}
+            text={this.state.card_text}
+          />
         </div>
       </div>
     );
