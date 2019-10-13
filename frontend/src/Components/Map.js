@@ -85,6 +85,17 @@ class Map extends Component {
       marker_lng: coords.lng.toFixed(3)
     });
   }
+  postPushPin = () => {
+    const PushPin = {
+      type: this.state.type,
+      description: this.state.description,
+      coords: [
+        this.state.marker_lat,
+        this.state.marker_lng],
+      event_count: this.state.event_count
+    }
+
+  }
   render() {
 
     //init state
@@ -101,22 +112,22 @@ class Map extends Component {
           <Button className='refresh-button' onClick={this.handleRefresh}>Refresh</Button>
           <FormGroup style={{ display: "inline-block",width: "20%", margin: "0 0 0 4rem" }}>
             <Input onChange={this.updateType} type="select" name="select" id="exampleSelect">
-              <option value="Voluntary Manslaughter">Voluntary Manslaughter</option>
-              <option value="Burglary">Burglary</option>
-              <option value="Child Abuse">Child Abuse</option>
-              <option value="Rape">Rape</option>
-              <option value="Homicide">Homicide</option>
-              <option value="Theft">Theft</option>
-              <option value="Shoplifting">Shoplifting</option>
-              <option value="Vandalism">Vandalism</option>
-              <option value="Sexual Assault">Sexual Assault</option>
-              <option value="Drug Traffickin">Drug Traffickin</option>
-              <option value="Fraud">Fraud</option>
-              <option value="Public Intoxication">Public Intoxication</option>
-              <option value="Disturbing the Peace">Disturbing the Peace</option>
-              <option value="Extortion">Extortion</option>
-              <option value="Justificable Homicide">Justificable Homicide</option>
-              <option value="Drug Possession">Drug Possession</option>
+              <option value="voluntary-manslaughter">Voluntary Manslaughter</option>
+              <option value="burglary">Burglary</option>
+              <option value="child-abuse">Child Abuse</option>
+              <option value="rape">Rape</option>
+              <option value="homicide">Homicide</option>
+              <option value="theft">Theft</option>
+              <option value="shoplifting">Shoplifting</option>
+              <option value="vandalism">Vandalism</option>
+              <option value="sexual-assault">Sexual Assault</option>
+              <option value="drug-traffickin">Drug Traffickin</option>
+              <option value="fraud">Fraud</option>
+              <option value="public-intoxication">Public Intoxication</option>
+              <option value="disturbing-the-peace">Disturbing the Peace</option>
+              <option value="extortion">Extortion</option>
+              <option value="justificable-homicide">Justificable Homicide</option>
+              <option value="drug-possession">Drug Possession</option>
             </Input>
           </FormGroup>
           <Input 
@@ -131,13 +142,13 @@ class Map extends Component {
             <span>Lon:</span><Input readOnly value={this.state.marker_lng} style={{ display: "inline-block", width: "25%", marginRight: "0.5rem" }}></Input>
             <span>Lat:</span><Input readOnly value={this.state.marker_lat} style={{ display: "inline-block", width: "25%" }}></Input>
           </div>
-          <Button color="success" style={{ padding: "0 3rem" }}>Post!</Button>
+          <Button onClick={this.postPushPin} color="success" style={{ padding: "0 3rem" }}>Post!</Button>
         </div>
 
         <LeafletMap
           center={position}
           zoom={this.state.zoom}
-          style={{ height: this.state.height }}
+          //style={{ height: this.state.height }}
           onClick={this.updateCoords}
         >
           <TileLayer
