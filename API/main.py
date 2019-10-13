@@ -1,4 +1,5 @@
 import json
+from fetcher.data_fetch import fetch_locales,  fetch_ensenyament, fetch_qualitat
 from enum import Enum
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -30,6 +31,10 @@ class Pin(BaseModel):
     description: str
     coords: list
     event_count: int
+    locale: str
+    q_air: str
+    child_infra: str
+
 
 app = FastAPI()
 
@@ -96,9 +101,16 @@ async def newpin(item: Pin):
     client = MongoClient("mongodb+srv://admin:admin@hackupc2019-n6sxc.mongodb.net/HackUPC2019?retryWrites=true&w=majority")
     db = client.get_database('HackUPC2019')
 
+    lon = item.coords[0]
+    lat = item.coords[1]
+
+    item.locale = fetch_locales(lat, lon)
+    item.q_air = fetch_qualitat(lat, lon)
+    item.child_infra = fetch_ensenyament(lat, lon)
+
     json_compatible_item_data = jsonable_encoder(item)
-    # db created globally, so always available - BAD practice, just to test:
     records = db.pushpins
     new_pin = json_compatible_item_data
     records.insert_one(new_pin)
     return item
+
