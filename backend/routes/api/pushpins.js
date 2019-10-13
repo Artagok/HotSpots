@@ -21,7 +21,10 @@ router.post('/', (req, res) => {
     type: req.body.type,
     description: req.body.description,
     coords: req.body.coords,
-    event_count: req.body.event_count
+    event_count: req.body.event_count,
+    locale: req.body.locale,
+    q_air: req.body.q_air,
+    child_infra: req.body.child_infra
   });
   newPushPin.save()
     .then(pushpin => res.json(pushpin));
