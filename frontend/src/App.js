@@ -7,11 +7,7 @@ import Button from "./Components/Button";
 function App() {
   return (
     <div className="body">
-      <Map className="map" />
-
-      <div className="menu-bar">
-        {/* <Button /> */}
-      </div>
+      <Map/>
     </div>
   );
 }
