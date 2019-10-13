@@ -7,6 +7,9 @@ Todas las funciones aceptan una lat: float y lon: float como parámetros
 import pandas as pd
 import numpy as np
 from scipy.spatial.distance import cdist
+import os
+
+cwd = os.getcwd()
 
 
 def read(path, na=np.nan):
@@ -41,7 +44,7 @@ def fetch_locales(lat: float, lon: float, ndigits: int = 3):
 
     # print(lat, lon, lat_min, lon_min, lat_max, lon_max)
 
-    df = read("data/2016_cens_locals_plantabaixa.csv")
+    df = read(cwd + "/fetcher/data/2016_cens_locals_plantabaixa.csv")
     df = df[["latitud", "longitud", "id_princip"]]
 
     df = df.loc[
@@ -72,7 +75,7 @@ def fetch_locales(lat: float, lon: float, ndigits: int = 3):
     # except IndexError:
     #    inactive = 0
 
-    return {"active": active, "inactive": inactive}
+    return {"active": int(active), "inactive": int(inactive)}
 
 
 def closest_point(point, points):
@@ -96,7 +99,7 @@ def fetch_qualitat(lat: float, lon: float, ndigits: int = 3):
 
     # print(closest)
 
-    df = read("data/2019_01_Gener_qualitat_aire_BCN.csv", na="--")
+    df = read(cwd + "/fetcher/data/2019_01_Gener_qualitat_aire_BCN.csv", na="--")
     df = df[["latitud", "longitud", "qualitat_aire"]]
 
     point = (lat, lon)
@@ -122,7 +125,11 @@ def fetch_qualitat(lat: float, lon: float, ndigits: int = 3):
     except:
         qa_pobre = 0
 
-    return {"qa_high": qa_bona, "qa_medium": qa_regular, "qa_low": qa_pobre}
+    return {
+        "qa_high": int(qa_bona),
+        "qa_medium": int(qa_regular),
+        "qa_low": int(qa_pobre),
+    }
 
 
 def fetch_ensenyament(lat: float, lon: float, ndigits: int = 3):
@@ -143,7 +150,7 @@ def fetch_ensenyament(lat: float, lon: float, ndigits: int = 3):
 
     # print(lat, lon, lat_min, lon_min, lat_max, lon_max)
 
-    df = read("data/E0001_Ensenyament_Infantil.csv").drop_duplicates(
+    df = read(cwd + "/fetcher/data/E0001_Ensenyament_Infantil.csv").drop_duplicates(
         subset=["codi_equipament"]
     )
 
@@ -154,4 +161,4 @@ def fetch_ensenyament(lat: float, lon: float, ndigits: int = 3):
         & df["latitud"].between(lat_min, lat_max, inclusive=True)
     ]
 
-    return {"equip_infantil": df.shape[0]}
+    return {"equip_infantil": int(df.shape[0])}
