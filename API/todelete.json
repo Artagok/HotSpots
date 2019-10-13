@@ -1,0 +1,273 @@
+[
+    {
+        '_id':ObjectId(        '5da21f06deed083683c06a78'        ),
+        'coords':[
+            2.1491,
+            41.404871
+        ],
+        'type':'kidnapping',
+        'description':'Eight year old goes missing',
+        'event_count':11,
+        'date':datetime.datetime(2019,
+        10,
+        12,
+        18,
+        44,
+        22,
+        155000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da21f28deed083683c06a79'        ),
+        'coords':[
+            2.175539,
+            41.379887
+        ],
+        'type':'kidnapping',
+        'description':"The son of the UN gets kidnapped on a trip to 'Ciudad Real'",
+        'event_count':13,
+        'date':datetime.datetime(2019,
+        10,
+        12,
+        18,
+        44,
+        56,
+        306000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da2212ddeed083683c06a7a'        ),
+        'coords':[
+            2.162956,
+            41.379073
+        ],
+        'type':'voluntary-manslaughter',
+        'description':'Machete fight ends with the live of a youngster',
+        'event_count':12,
+        'date':datetime.datetime(2019,
+        10,
+        12,
+        18,
+        53,
+        33,
+        623000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da2225cdeed083683c06a7b'        ),
+        'coords':[
+            2.164565,
+            41.376565
+        ],
+        'type':'kidnapping',
+        'description':'Multiple alert condensed in one: suburban kids constantly getting lost',
+        'event_count':9,
+        'date':datetime.datetime(2019,
+        10,
+        12,
+        18,
+        58,
+        36,
+        538000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da22273deed083683c06a7c'        ),
+        'coords':[
+            2.170047,
+            41.379616
+        ],
+        'type':'voluntary-manslaughter',
+        'description':'Brutal killing of a local by a drunk homeless',
+        'event_count':8,
+        'date':datetime.datetime(2019,
+        10,
+        12,
+        18,
+        58,
+        59,
+        61000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da25d943cab61cdddcc1647'        ),
+        'coords':[
+            41.404871,
+            2.1491
+        ],
+        'type':'burglary',
+        'description':'THIS SHOULD WORK',
+        'date':'2019-10-11T22:10:23.533Z',
+        'event_count':5,
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da269f3041746f989355b8e'        ),
+        'coords':[
+            41.404871,
+            2.1491
+        ],
+        'type':'rape',
+        'description':'A crime has been spotted',
+        'event_count':5,
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da27b8d6c8335589ae24800'        ),
+        'coords':[
+            2.19,
+            41.39
+        ],
+        'type':'voluntary-manslaughter',
+        'description':'PostMan POST test',
+        'event_count':4,
+        'date':datetime.datetime(2019,
+        10,
+        13,
+        1,
+        19,
+        9,
+        853000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da27f8d7ec8e30c9bd3bb6d'        ),
+        'coords':[
+            2.1,
+            41
+        ],
+        'type':'fraud',
+        'description':'!AAAAAAH!',
+        'event_count':6,
+        'date':datetime.datetime(2019,
+        10,
+        13,
+        1,
+        36,
+        13,
+        234000),
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da28964431fd306cead8261'        ),
+        'coords':[
+            41.404871,
+            2.1491
+        ],
+        'type':'burglary',
+        'description':'THIS SHOULD WORK',
+        'date':'2019-10-11T22:10:23.533Z',
+        'event_count':5,
+        '__v':0
+    },
+    {
+        '_id':ObjectId(        '5da289becd44846fbfbdcafe'        ),
+        'type':'rape',
+        'description':'YES IT WORKS',
+        'coords':[
+            1.123,
+            2.123
+        ],
+        'event_count':2
+    },
+    {
+        '_id':ObjectId(        '5da28d108fa3e66e9921342f'        ),
+        'type':'drug-traffickin',
+        'description':'cccccccccccccccccc',
+        'coords':[
+            2.157,
+            41.392
+        ],
+        'event_count':9
+    },
+    {
+        '_id':ObjectId(        '5da28d438fa3e66e99213431'        ),
+        'type':'shoplifting',
+        'description':'yyyyyyyyyyyyyyyyyyy',
+        'coords':[
+            2.216,
+            41.403
+        ],
+        'event_count':11
+    },
+    {
+        '_id':ObjectId(        '5da28da98fa3e66e99213433'        ),
+        'type':'shoplifting',
+        'description':'hhhhhhhhhhhhhhhhhhhhh',
+        'coords':[
+            2.196,
+            41.425
+        ],
+        'event_count':7
+    },
+    {
+        '_id':ObjectId(        '5da29b92c9fe6189650c0169'        ),
+        'type':'child-abuse',
+        'description':'5.35',
+        'coords':[
+            2.16,
+            41.389
+        ],
+        'event_count':9
+    },
+    {
+        '_id':ObjectId(        '5da29e5960e6746be374e902'        ),
+        'type':'child-abuse',
+        'description':'5.35',
+        'coords':[
+            2.16,
+            41.389
+        ],
+        'event_count':9
+    },
+    {
+        '_id':ObjectId(        '5da29e5960e6746be374e904'        ),
+        'type':'',
+        'description':'',
+        'coords':[
+            2.069,
+            41.426
+        ],
+        'event_count':13
+    },
+    {
+        '_id':ObjectId(        '5da29eb2d68ac67365a9335e'        ),
+        'type':'',
+        'description':'5.49',
+        'coords':[
+            2.16,
+            41.389
+        ],
+        'event_count':11
+    },
+    {
+        '_id':ObjectId(        '5da2a07d2a315f70886b47d0'        ),
+        'type':'justificable-homicide',
+        'description':'asd asd asd',
+        'coords':[
+            2.161,
+            41.381
+        ],
+        'event_count':6
+    },
+    {
+        '_id':ObjectId(        '5da2a0912a315f70886b47d2'        ),
+        'type':'justificable-homicide',
+        'description':'asd asd asd',
+        'coords':[
+            2.161,
+            41.381
+        ],
+        'event_count':6
+    },
+    {
+        '_id':ObjectId(        '5da2a1552a315f70886b47d4'        ),
+        'type':'vandalism',
+        'description':'aaa aaa ',
+        'coords':[
+            2.171,
+            41.38
+        ],
+        'event_count':12
+    }
+]
