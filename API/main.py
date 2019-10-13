@@ -90,3 +90,15 @@ async def type_bd():
         new_records.append(new_subelement)
 
     return new_records
+
+@app.post("/newpin")
+async def newpin(item: Pin):
+    client = MongoClient("mongodb+srv://admin:admin@hackupc2019-n6sxc.mongodb.net/HackUPC2019?retryWrites=true&w=majority")
+    db = client.get_database('HackUPC2019')
+
+    json_compatible_item_data = jsonable_encoder(item)
+    # db created globally, so always available - BAD practice, just to test:
+    records = db.pushpins
+    new_pin = json_compatible_item_data
+    records.insert_one(new_pin)
+    return item
