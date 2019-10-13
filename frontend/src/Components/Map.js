@@ -276,8 +276,8 @@ class Map extends Component {
               <CircleMarker
                 key={k}
                 center={[hotspot["coords"][0], hotspot["coords"][1]]}
-                radius={10 * Math.log(hotspot["event_count"]) + 15}
-                fillOpacity={0.5 * (Math.log(hotspot["event_count"]) + 0.2)}
+                radius={10 * Math.log(hotspot["event_count"]) + 5}
+                fillOpacity={0.2 * (Math.log(hotspot["event_count"]) + 0.1)}
                 color={"red"}
                 stroke={false}
                 onClick={() => this.handleClick(k)}
