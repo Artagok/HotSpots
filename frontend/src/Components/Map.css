@@ -4,15 +4,19 @@
   height: 100vh;
 }
 
-.refresh-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 999;  
+.menu-map {
+  position: fixed;
+  top:0px;
+  right:0px;
+  width:100%;
+  z-index: 100000;
 }
 
-.menu-map {
-  display: flex;
-  align-content: center;
-  justify-content: flex-start;
+.card-container {
+  position: fixed;
+  top:30%;
+  right:10%;
+  width:20%;
+  min-width: 200px;
+  z-index: 100000;
 }

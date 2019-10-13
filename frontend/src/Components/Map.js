@@ -2,18 +2,40 @@ import React, { Component, createRef } from "react";
 import { Map as LeafletMap, Marker, Popup, TileLayer } from "react-leaflet";
 import { CircleMarker, Tooltip } from "react-leaflet";
 import emptyData from "./data.js";
-import { Button, FormGroup, Input } from "reactstrap";
-// import "./Map.css";
+import { Button, FormGroup, Input, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import "./Map.css";
 import "leaflet/dist/leaflet.css";
 import { randomBytes } from "crypto";
 
-// function refreshButton(props) {
-//   return (
-//     <button className="refreshButton" onClick={props.onClick}>
-//       refresh
-//     </button>
-//   );
-// }
+const EventCard = (props) => {
+  const verificateCard = () => {
+    props.verificateCard()
+  };
+  const closeCard = () => {
+    props.closeCard()
+  };
+
+  if (props.show){
+    return (
+      <div>
+        <Card>
+          <CardImg top width="100%" src="https://talkradio.co.uk/sites/talkradio.co.uk/files/styles/large/public/field/image/201708/lasramblas3.jpg?itok=X2svnMjn" alt="Card image cap" />
+          <CardBody>
+            <CardTitle>{props.title}</CardTitle>
+            <CardSubtitle>{props.subtitle}</CardSubtitle>
+            <CardText>{props.text}</CardText>
+            <Button onClick={closeCard}>Close</Button>
+            <Button style={{position:"absolute", right:"10%", backgroundColor:"green"}}onClick={verificateCard}>+1</Button>
+          </CardBody>
+        </Card>
+      </div>
+    );
+  } else {
+    return (
+      <div></div>
+    );
+  };
+};
 
 // Basic example from docs
 class Map extends Component {
@@ -29,10 +51,31 @@ class Map extends Component {
       type: "",
       description: "",
       coords: [],
-      event_count: Math.floor(Math.random() * 10) + 5
+      event_count: Math.floor(Math.random() * 10) + 5,
+      card_title: "titol",
+      card_subtitle: "subtitol",
+      card_text: "text",
+      card_show: false,
+      current_id: null
     };
     this.handleRefresh = this.handleRefresh.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.closeCardHandler = this.closeCardHandler.bind(this);
+    this.verificateCardHandler = this.verificateCardHandler.bind(this);
+  }
+
+  closeCardHandler(){
+    this.setState({
+      card_show: false
+    });
+  }
+
+  verificateCardHandler(){
+    let newData = this.state.data;
+    newData.city[this.state.current_id].event_count++;
+    this.setState({
+      data: newData
+    });
   }
 
   handleRefresh() {
@@ -51,11 +94,13 @@ class Map extends Component {
   }
 
   handleClick(id) {
-    console.log(id);
     let newData = this.state.data;
-    newData.city[id].event_count++;
     this.setState({
-      data: newData
+      card_show: true,
+      card_title: newData.city[id].type,
+      card_subtitle: "There's been an incident in Barcelona",
+      card_text: newData.city[id].description,
+      current_id: id
     });
   }
 
@@ -130,8 +175,7 @@ class Map extends Component {
             display: "flex",
             justifyContent: "space-between",
             alignContent: "stretch",
-            alignItems: "stretch",
-            backgroundColor: "#dedede"
+            alignItems: "stretch"
           }}
         >
           <Button className="refresh-button" onClick={this.handleRefresh}>
@@ -249,6 +293,9 @@ class Map extends Component {
             );
           })}
         </LeafletMap>
+        <div className="card-container">
+          <EventCard verificateCard={this.verificateCardHandler} closeCard={this.closeCardHandler} show={this.state.card_show} title={this.state.card_title} subtitle={this.state.card_subtitle} text={this.state.card_text}/>
+        </div>
       </div>
     );
   }
