@@ -1,6 +1,6 @@
 # HackUPC 2019 - HotSpots
 
-## Making Incident Monitoring 🕵🏻‍♂️ easy ⚡️
+## ⚡️ Easy Incident Monitoring 🕵🏻‍♂️ 
 
 * Nil Quera - [@nilquera](https://github.com/nilquera)
 * Ignasi Oliver - [@ignasioliver](https://github.com/ignasioliver)
