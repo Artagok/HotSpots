@@ -32,6 +32,7 @@ class Map extends Component {
       event_count: Math.floor(Math.random() * 10) + 5
     };
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleRefresh() {
@@ -47,6 +48,15 @@ class Map extends Component {
           data: newData
         });
       });
+  }
+
+  handleClick(id){
+    console.log(id);
+    let newData = this.state.data;
+    newData.city[id].event_count++;
+    this.setState({
+          data: newData
+    });
   }
 
   // source: https://stackoverflow.com/questions/41660648/make-react-leaflet-map-component-resize-itself-to-fit-available-space
@@ -161,18 +171,17 @@ class Map extends Component {
               <CircleMarker
                 key={k}
                 center={[hotspot["coords"][0], hotspot["coords"][1]]}
-                radius={20 * Math.log(hotspot["event_count"])}
-                fillOpacity={0.5}
+                radius={10 * Math.log(hotspot["event_count"])}
+                fillOpacity={0.2 * Math.log(hotspot["event_count"])}
+                color={"red"}
                 stroke={false}
+                onClick={() => this.handleClick(k)}
               >
                 <Tooltip direction="right" offset={[-8, -2]} Opacity={1}>
                   <span>
-                    {"Evento:" +
-                      hotspot["description"] +
-                      " -- " +
-                      "Number of events:" +
-                      " " +
-                      hotspot["event_count"]}
+                    {hotspot["description"] +
+                    " - Verification count: " +
+                    hotspot["event_count"]}
                   </span>
                 </Tooltip>
               </CircleMarker>
