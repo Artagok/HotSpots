@@ -101,7 +101,7 @@ class Map extends Component {
     const PushPin = {
       type: this.state.type,
       description: this.state.description,
-      coords: [this.state.marker_lng, this.state.marker_lat],
+      coords: [this.state.marker_lat, this.state.marker_lng],
       event_count: this.state.event_count
     };
     console.log(PushPin);
